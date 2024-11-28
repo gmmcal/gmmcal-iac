@@ -34,12 +34,5 @@ inputs = {
       proxied  = false
       priority = 1
     },
-    {
-      type     = "A"
-      name     = "cache"
-      content  = dependency.server.outputs.ip_address
-      proxied  = false
-      priority = 1
-    },
   ]
 }

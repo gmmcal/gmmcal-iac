@@ -16,35 +16,19 @@ data "hcloud_ssh_key" "this" {
 }
 
 resource "hcloud_firewall" "this" {
-  name = "gustavocunha.dev"
+  for_each = { for index, item in var.firewall_ports : index => item }
 
-  # rule {
-  #   description = "Allow DB traffic"
-  #   direction   = "in"
-  #   protocol    = "tcp"
-  #   port        = "5432"
-  #   source_ips = [
-  #     "0.0.0.0/0",
-  #     "::/0"
-  #   ]
-  # }
+  name   = each.value.description
+  labels = var.labels
 
-  rule {
-    description = "Allow HTTPS traffic"
-    direction   = "in"
-    protocol    = "tcp"
-    port        = "443"
-    source_ips = [
-      "0.0.0.0/0",
-      "::/0"
-    ]
+  apply_to {
+    server = hcloud_server.this.id
   }
 
   rule {
-    description = "Allow SSH traffic"
     direction   = "in"
     protocol    = "tcp"
-    port        = "22"
+    port        = each.value.port
     source_ips = [
       "0.0.0.0/0",
       "::/0"
@@ -55,6 +39,7 @@ resource "hcloud_firewall" "this" {
 resource "hcloud_network" "private" {
   name     = "gustavocunha.dev"
   ip_range = "10.0.1.0/24"
+  labels   = var.labels
 }
 
 resource "hcloud_network_subnet" "this" {
@@ -65,11 +50,9 @@ resource "hcloud_network_subnet" "this" {
 }
 
 resource "hcloud_placement_group" "this" {
-  name = "gustavocunha.dev"
-  type = "spread"
-  labels = {
-    key = "value"
-  }
+  name   = "gustavocunha.dev"
+  type   = "spread"
+  labels = var.labels
 }
 
 resource "hcloud_server" "this" {
@@ -78,8 +61,8 @@ resource "hcloud_server" "this" {
   location           = "nbg1"
   image              = "ubuntu-24.04"
   ssh_keys           = [data.hcloud_ssh_key.this.id]
-  firewall_ids       = [hcloud_firewall.this.id]
   placement_group_id = hcloud_placement_group.this.id
+  labels             = var.labels
 }
 
 resource "hcloud_server_network" "srvnetwork" {

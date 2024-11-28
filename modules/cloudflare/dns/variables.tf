@@ -13,6 +13,7 @@ variable "items" {
     priority = number,
   }))
 }
+
 variable "allow_overwrite" {
   type        = bool
   default     = false
