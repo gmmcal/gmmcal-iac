@@ -15,6 +15,7 @@ inputs = {
       content  = "aspmx.l.google.com"
       proxied  = false
       priority = 1
+      ttl      = 1
     },
     {
       type     = "MX"
@@ -22,6 +23,7 @@ inputs = {
       content  = "aspmx2.googlemail.com"
       proxied  = false
       priority = 10
+      ttl      = 1
     },
     {
       type     = "MX"
@@ -29,6 +31,7 @@ inputs = {
       content  = "aspmx3.googlemail.com"
       proxied  = false
       priority = 10
+      ttl      = 1
     },
     {
       type     = "MX"
@@ -36,6 +39,7 @@ inputs = {
       content  = "alt1.aspmx.l.google.com"
       proxied  = false
       priority = 5
+      ttl      = 1
     },
     {
       type     = "MX"
@@ -43,6 +47,7 @@ inputs = {
       content  = "alt2.aspmx.l.google.com"
       proxied  = false
       priority = 5
+      ttl      = 1
     },
   ]
 }
