@@ -4,6 +4,12 @@ variable "hetzner_token" {
   description = "IP Address of service"
 }
 
+variable "plan" {
+  sensitive   = true
+  type        = string
+  description = "Server Plan"
+}
+
 variable "firewall_ports" {
   default = []
   type    = list(object({
