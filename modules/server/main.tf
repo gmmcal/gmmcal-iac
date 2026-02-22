@@ -57,7 +57,7 @@ resource "hcloud_placement_group" "this" {
 
 resource "hcloud_server" "this" {
   name               = "gustavocunha.dev"
-  server_type        = "cx22"
+  server_type        = var.plan
   location           = "nbg1"
   image              = "ubuntu-24.04"
   ssh_keys           = [data.hcloud_ssh_key.this.id]

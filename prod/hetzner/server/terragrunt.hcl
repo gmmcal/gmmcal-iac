@@ -1,5 +1,5 @@
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 terraform {
@@ -7,6 +7,7 @@ terraform {
 }
 
 inputs = {
+  plan = "cx23",
   firewall_ports = [
     {
       port        = "443"
