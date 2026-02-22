@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "terraform"
-    directory: "/modules"
+    directory: "/"
     open-pull-requests-limit: 50
     commit-message:
       prefix: "OPT"
