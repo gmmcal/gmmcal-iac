@@ -1,0 +1,108 @@
+name: Pull Request
+
+on:
+  pull_request:
+
+env:
+  TG_NON_INTERACTIVE: "true"
+  TG_NO_COLOR: "true"
+  TG_PROVIDER_CACHE: "true"
+  TG_ALL: "true"
+  TG_PROVIDER_CACHE_DIR: "${{ github.workspace }}/.terragrunt/provider-cache"
+  TG_DOWNLOAD_DIR: "${{ github.workspace }}/.terragrunt/cache"
+  TG_PLUGIN_CACHE_DIR: "${{ github.workspace }}/.terragrunt/plugin-cache"
+  TF_VAR_hetzner_token: ${{ secrets.HETZNER_TOKEN }}
+  TF_VAR_cloudflare_token: ${{ secrets.CLOUDFLARE_TOKEN }}
+
+permissions:
+  id-token: write
+
+jobs:
+  validate:
+    name: ✅ Validate Terraform
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment:
+          - prod
+    container:
+      image: alpine/terragrunt:tf1.12.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Create cache directories
+        run: |
+          mkdir -p ${{ github.workspace }}/.terragrunt/cache
+          mkdir -p ${{ github.workspace }}/.terragrunt/plugin-cache
+          mkdir -p ${{ github.workspace }}/.terragrunt/provider-cache
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          aws-region: eu-west-1
+          role-to-assume: ${{ vars.GH_ROLE_ARN }}
+
+      - name: Init
+        working-directory: ${{ matrix.environment }}
+        run: |
+          terragrunt init
+
+      - name: Lint
+        working-directory: ${{ matrix.environment }}
+        run: |
+          terragrunt hcl format --check
+
+      - name: Validate
+        working-directory: ${{ matrix.environment }}
+        run: |
+          terragrunt validate
+
+  plan:
+    name: 📝 Plan
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment:
+          - prod
+    container:
+      image: alpine/terragrunt:tf1.12.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Create cache directories
+        run: |
+          mkdir -p ${{ github.workspace }}/.terragrunt/cache
+          mkdir -p ${{ github.workspace }}/.terragrunt/plugin-cache
+          mkdir -p ${{ github.workspace }}/.terragrunt/provider-cache
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          aws-region: eu-west-1
+          role-to-assume: ${{ vars.GH_ROLE_ARN }}
+
+      - name: Init Terragrunt
+        working-directory: ${{ matrix.environment }}
+        run: |
+          terragrunt init
+
+      - name: Generate Plan
+        id: plan
+        working-directory: ${{ matrix.environment }}
+        run: |
+          terragrunt plan -no-color -out ./default.tfplan
+          echo "planfile=./default.tfplan" >> $GITHUB_OUTPUT
+
+      - name: Publish plan
+        uses: borchero/terraform-plan-comment@v2
+        env:
+          TG_LOG_CUSTOM_FORMAT: "%msg(path=relative)"
+        with:
+          token: ${{ github.token }}
+          working-directory: ${{ matrix.environment }}
+          planfile: ${{ steps.plan.outputs.planfile }}
+          terraform-cmd: terragrunt
+          header: "Terragrunt Plan for ${{ matrix.environment }}"
+          skip-comment: true
