@@ -82,7 +82,7 @@ jobs:
           echo "planfile=./default.tfplan" >> $GITHUB_OUTPUT
 
       - name: Publish plan
-        uses: borchero/terraform-plan-comment@v3
+        uses: borchero/terraform-plan-comment@v3.1.0
         env:
           TG_LOG_CUSTOM_FORMAT: "%msg(path=relative)"
         with:
