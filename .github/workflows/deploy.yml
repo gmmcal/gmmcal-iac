@@ -48,8 +48,6 @@ jobs:
       matrix:
         environment:
           - prod
-    container:
-      image: alpine/terragrunt:tf1.12.1
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -67,6 +65,17 @@ jobs:
         with:
           aws-region: eu-west-1
           role-to-assume: ${{ vars.GH_ROLE_ARN }}
+
+      - name: Install Terragrunt and OpenTofu
+        uses: jdx/mise-action@v4
+        with:
+          mise_toml: |
+            [tools]
+            terraform = "latest"
+            terragrunt = "latest"
+
+      - name: Install Terragrunt and OpenTofu
+        uses: gruntwork-io/terragrunt-action@v3
 
       - name: Init Terragrunt
         working-directory: ${{ matrix.environment }}
@@ -100,8 +109,6 @@ jobs:
       matrix:
         environment:
           - prod
-    container:
-      image: alpine/terragrunt:tf1.12.1
     environment:
       name: ${{ matrix.environment }}
     needs:
@@ -124,6 +131,17 @@ jobs:
         with:
           aws-region: eu-west-1
           role-to-assume: ${{ vars.GH_ROLE_ARN }}
+
+      - name: Install Terragrunt and OpenTofu
+        uses: jdx/mise-action@v4
+        with:
+          mise_toml: |
+            [tools]
+            terraform = "latest"
+            terragrunt = "latest"
+
+      - name: Install Terragrunt and OpenTofu
+        uses: gruntwork-io/terragrunt-action@v3
 
       - name: Init Terragrunt
         working-directory: ${{ matrix.environment }}

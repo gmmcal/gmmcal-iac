@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "terraform"
-    directory: "/"
+    directory: "/modules"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
@@ -19,7 +19,7 @@ updates:
     assignees:
       - "gmmcal"
   - package-ecosystem: "opentofu"
-    directory: "/"
+    directory: "/prod"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
