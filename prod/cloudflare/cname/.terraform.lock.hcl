@@ -1,9 +1,15 @@
+# This file is maintained automatically by "terraform init".
+# Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/cloudflare/cloudflare" {
   version     = "5.17.0"
-  constraints = "5.17.0"
+  constraints = "~> 5.0"
   hashes = [
+    "h1:+t1DzV6DR1idD6E+KP6ggrQtccBozxX47Adf5On1n5o=",
+    "h1:N6T9tubZNTnj4KhFwEuxA8zn0GNf/pc4HUsj8MXrfPw=",
     "h1:QDpQDZMMreh2Z8Pm3WxCe2I1d4NEOyvZvNGoY8+BDqo=",
+    "h1:Tv6f3GxL8OxorFRogiS2C2/WQD7CHZsZfzmy6fb5JuI=",
+    "h1:zaT606hJ2wIVNqD7zBpBUdZ4Am6syTa8XkeGaL7vwac=",
     "zh:33e24de8ecccb52b5588893cdfbd2b8942c86a8a855d32892d4be04b4ca8e064",
     "zh:37bf1f79496650dbb7f6d6241ef54fbf3e1e6f0dbbc644806c0c78acfcdbc57c",
     "zh:5c5f10424c93f0278cc8b497b3c942e1b17f114d87ed72aa21077e6f1f1e0379",
@@ -17,9 +23,12 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
 }
 
 provider "registry.terraform.io/hashicorp/aws" {
-  version     = "6.33.0"
-  constraints = "6.33.0"
+  version = "6.33.0"
   hashes = [
+    "h1:DAUdRFTP+CSl97kUK1ixUEfo4gzFeqDSpqas82B+/JA=",
+    "h1:MxndtTQD9qHGQwIjScLlY4BQZgdjJ1Lsq1TdwodsxmU=",
+    "h1:eho379mi4YF9Lue1Xpq+vpvZzV+kqP9l4QssnDNJgkA=",
+    "h1:iy/Wyzeat5RuwUwENTfWHeXG/sXnTianugicM64kYj0=",
     "h1:wNrviem6bg9fq1bYvtGqH9QWO6iWbM1bBRLSqFJWqWM=",
     "zh:207f3f9db05c11429a241b84deeecfbd4caa941792c2c49b09c8c85cd59474dd",
     "zh:25c36ad1f4617aeb23f8cd18efc7856127db721f6cf3e2e474236af019ce9ad1",

@@ -18,6 +18,19 @@ updates:
       timezone: "Europe/Amsterdam"
     assignees:
       - "gmmcal"
+  - package-ecosystem: "opentofu"
+    directory: "/"
+    open-pull-requests-limit: 50
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "OPT"
+    schedule:
+      interval: "daily"
+      time: "08:00"
+      timezone: "Europe/Amsterdam"
+    assignees:
+      - "gmmcal"
   - package-ecosystem: github-actions
     directory: "/"
     open-pull-requests-limit: 50
