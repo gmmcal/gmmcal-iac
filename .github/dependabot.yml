@@ -6,7 +6,10 @@
 version: 2
 updates:
   - package-ecosystem: "terraform"
-    directory: "/"
+    directories:
+      - "/modules/cloudflare/dns"
+      - "/modules/empty"
+      - "/modules/server"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
@@ -21,7 +24,11 @@ updates:
     allow:
       - dependency-type: "all"
   - package-ecosystem: "opentofu"
-    directory: "/"
+    directories:
+      - "/prod/cloudflare/cname"
+      - "/prod/cloudflare/mx"
+      - "/prod/hetzner/dns"
+      - "/prod/hetzner/server"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
