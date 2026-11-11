@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "${path_relative_from_include("root")}//modules/server"
+  source = "../../../modules/server"
 }
 
 inputs = {
