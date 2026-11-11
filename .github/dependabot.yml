@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "terraform"
-    directory: "/modules"
+    directory: "/"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
@@ -18,8 +18,10 @@ updates:
       timezone: "Europe/Amsterdam"
     assignees:
       - "gmmcal"
+    allow:
+      - dependency-type: "all"
   - package-ecosystem: "opentofu"
-    directory: "/prod"
+    directory: "/"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
@@ -31,6 +33,8 @@ updates:
       timezone: "Europe/Amsterdam"
     assignees:
       - "gmmcal"
+    allow:
+      - dependency-type: "all"
   - package-ecosystem: github-actions
     directory: "/"
     open-pull-requests-limit: 50

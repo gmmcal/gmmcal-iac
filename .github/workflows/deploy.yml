@@ -151,4 +151,4 @@ jobs:
       - name: Apply Plan
         working-directory: ${{ matrix.environment }}
         run: |
-          terragrunt apply --terragrunt-log-level info -lock-timeout=5m
+          terragrunt apply -lock-timeout=5m
