@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "../../../modules/cloudflare/dns"
+  source = "${path_relative_from_include("root")}/modules/cloudflare/dns"
 }
 
 inputs = {
