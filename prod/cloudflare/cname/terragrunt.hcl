@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "${path_relative_from_include("root")}/modules/cloudflare/dns"
+  source = "git::https://www.github.com/gmmcal/gmmcal-iac-modules.git//modules/cloudflare/dns?ref=v0.1.0"
 }
 
 inputs = {
