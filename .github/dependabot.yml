@@ -9,8 +9,6 @@ updates:
     directories:
       - "/prod/**/*"
     open-pull-requests-limit: 50
-    cooldown:
-      default-days: 7
     commit-message:
       prefix: "OPT"
     schedule:
