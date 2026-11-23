@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "git::https://www.github.com/gmmcal/gmmcal-iac-modules.git//modules/iam/deploy-role?ref=v0.3.0"
+  source = "git::https://www.github.com/gmmcal/gmmcal-iac-modules.git//modules/iam/deploy-role?ref=v0.3.2"
 }
 
 inputs = {
