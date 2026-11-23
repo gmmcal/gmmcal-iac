@@ -3,7 +3,7 @@ include "root" {
 }
 
 terraform {
-  source = "git::https://www.github.com/gmmcal/gmmcal-iac-modules.git//modules/cloudflare/dns?ref=v0.1.0"
+  source = "git::git@github.com:gmmcal/gmmcal-iac-modules.git//modules/cloudflare/dns?ref=v0.1.0"
 }
 
 dependency "server" {
