@@ -6,7 +6,8 @@
 version: 2
 updates:
   - package-ecosystem: "opentofu"
-    directory: "/prod/**/**"
+    directories:
+      - "/prod/**/*"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
