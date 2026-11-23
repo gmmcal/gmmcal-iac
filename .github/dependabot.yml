@@ -5,9 +5,8 @@
 
 version: 2
 updates:
-  - package-ecosystem: "opentofu"
+  - package-ecosystem: "terraform"
     directories:
-      - "/"
       - "/prod/**/*"
     open-pull-requests-limit: 50
     commit-message:
