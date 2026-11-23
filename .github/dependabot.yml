@@ -6,7 +6,12 @@
 version: 2
 updates:
   - package-ecosystem: "opentofu"
-    directory: "/"
+    directories:
+      - "/prod/iam/deploy-role"
+      - "/prod/cloudflare/cname"
+      - "/prod/cloudflare/mx"
+      - "/prod/hetzner/dns"
+      - "/prod/hetzner/server"
     open-pull-requests-limit: 50
     cooldown:
       default-days: 7
