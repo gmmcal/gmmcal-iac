@@ -19,6 +19,20 @@ updates:
       - "gmmcal"
     allow:
       - dependency-type: "all"
+  - package-ecosystem: "opentofu"
+    directories:
+      - "/prod/**/*"
+    open-pull-requests-limit: 50
+    commit-message:
+      prefix: "OPT"
+    schedule:
+      interval: "daily"
+      time: "08:00"
+      timezone: "Europe/Amsterdam"
+    assignees:
+      - "gmmcal"
+    allow:
+      - dependency-type: "all"
   - package-ecosystem: github-actions
     directory: "/"
     open-pull-requests-limit: 50
