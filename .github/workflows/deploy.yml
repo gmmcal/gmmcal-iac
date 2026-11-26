@@ -67,7 +67,7 @@ jobs:
           role-to-assume: ${{ vars.GH_ROLE_ARN }}
 
       - name: Install Terragrunt and OpenTofu
-        uses: jdx/mise-action@v5.2.9
+        uses: jdx/mise-action@v5.2.10
         with:
           mise_toml: |
             [tools]
@@ -133,7 +133,7 @@ jobs:
           role-to-assume: ${{ vars.GH_ROLE_ARN }}
 
       - name: Install Terragrunt and OpenTofu
-        uses: jdx/mise-action@v5.2.9
+        uses: jdx/mise-action@v5.2.10
         with:
           mise_toml: |
             [tools]
